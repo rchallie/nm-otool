@@ -6,7 +6,7 @@
 #    By: rchallie <rchallie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/13 15:26:30 by rchallie          #+#    #+#              #
-#    Updated: 2020/08/17 19:07:16 by rchallie         ###   ########.fr        #
+#    Updated: 2020/08/18 22:51:53 by rchallie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ SOURCES_DIR_NM = ft_nm_project/sources_nm/
 SOURCES_NM = 	ft_nm.c \
 				memory_map.c \
 				error.c \
-				interface.c
+				interface.c \
+				symtab_header.c
+				
 SOURCES_NM_PREFIXED = $(addprefix $(SOURCES_DIR_NM), $(SOURCES_NM))
 # ==============================================================================
 
@@ -42,7 +44,7 @@ OBJECTS_NM = $(addprefix $(OBJECTS_DIR_NM), $(OBJECT_NM))
 # ==============================================================================
 
 # FLAGS ========================================================================
-FLAGS = -Wall -Wextra -Werror -std=c99
+FLAGS = -Wall -Wextra -Werror --std=c99
 # ==============================================================================
 
 # OBJECTS COMPILE ==============================================================

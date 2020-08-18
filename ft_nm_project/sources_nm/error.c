@@ -6,7 +6,7 @@
 /*   By: rchallie <rchallie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 22:41:34 by rchallie          #+#    #+#             */
-/*   Updated: 2020/08/17 19:20:21 by rchallie         ###   ########.fr       */
+/*   Updated: 2020/08/18 22:42:26 by rchallie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ int	error(
 		ft_putstr_fd("File can't be mapped.\n", 2);
 	else if (errnum == ERROR_INVALID_FORMAT)
 		ft_putstr_fd("Invalid file format.\n", 2);
+	else if (errnum == ERROR_FIND_SYMTAB)
+		ft_putstr_fd("File has no symtab.\n", 2);
 	return (ERROR);
 }

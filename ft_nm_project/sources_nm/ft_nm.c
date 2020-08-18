@@ -6,12 +6,20 @@
 /*   By: rchallie <rchallie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 15:31:34 by rchallie          #+#    #+#             */
-/*   Updated: 2020/08/17 19:02:07 by rchallie         ###   ########.fr       */
+/*   Updated: 2020/08/18 22:52:32 by rchallie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // http://www.skyfree.org/linux/references/ELF_Format.pdf
 // https://wiki.tcl-lang.org/page/ELF
+// https://en.wikipedia.org/wiki/Executable_and_Linkable_Format
+// https://stackoverflow.com/questions/26294034/how-to-make-an-executable-elf-file-in-linux-using-a-hex-editor
+
+/*
+	Dans le ELF reader récupérer les infos sur début offset, nb headers, taille d'un header
+	, check chaque header pour récupérer .symtab (voir .data pour comprendre)
+	et finir par récupérer chaque symbol
+*/
 
 #include "../includes_nm/ft_nm.h"
 
@@ -23,14 +31,17 @@ static void nm_close(struct s_memmap *memmap)
 
 static int  nm_protocol(char *path)
 {
-	int func_return;
-	t_memmap mem_map;
+	int			func_return;
+	t_memmap	mem_map;
+	t_header 	symtab;
 	
 	func_return = 0;
 	mem_map = (t_memmap) {};
 	interface_print_filename(path);
-	if ((func_return = memmap(path, &mem_map)) != SUCCESS)
-			return (func_return);
+	if ((func_return = memory_map(path, &mem_map)) != SUCCESS)
+		return (func_return);
+	if ((func_return = symbol_table_header(mem_map, &symtab)) != SUCCESS)
+		return (error(ERROR_FIND_SYMTAB));
 	nm_close(&mem_map);
 	return (func_return);
 }

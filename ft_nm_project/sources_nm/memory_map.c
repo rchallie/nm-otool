@@ -6,7 +6,7 @@
 /*   By: rchallie <rchallie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 22:24:22 by rchallie          #+#    #+#             */
-/*   Updated: 2020/08/17 19:20:31 by rchallie         ###   ########.fr       */
+/*   Updated: 2020/08/18 22:51:18 by rchallie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@
 **		return:	-1 if an error appear, 0 otherwise.
 */
 
-int	memmap(
+int	memory_map(
 	char *path,
 	struct s_memmap *memmap
 )
 {
 	struct stat stats;
 
+	*memmap = (struct s_memmap){};
 	if ((memmap->file_desc = open(path, O_RDONLY)) == ERROR)
 		return (error(ERROR_OPEN_FILE));
 	if (fstat(memmap->file_desc, &stats) == ERROR)
